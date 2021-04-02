@@ -187,9 +187,9 @@ class Builder
     {
         $boost  = $where['boost'] ?? 0;
         $column = $where['column'] ?: '';
-        $value  = $where['value'] ?: '';
+        $value  = $where['value'] ?? '';
 
-        if (empty($column) || empty($value)) {
+        if (empty($column)) {
             return null;
         }
 
@@ -241,9 +241,9 @@ class Builder
     {
         $boost  = $where['boost'] ?? 0;
         $column = $where['column'] ?: '';
-        $value  = $where['value'] ?: [];
+        $value  = $where['value'] ?? [];
 
-        if (empty($column) || empty($value)) {
+        if (empty($column)) {
             return null;
         }
 
@@ -286,9 +286,9 @@ class Builder
         $operator = $where['operator'] ?: '';
         $boost    = $where['boost'] ?? 0;
         $column   = $where['column'] ?: '';
-        $value    = $where['value'] ?: [];
+        $value    = $where['value'] ?? [];
 
-        if (empty($operator) || empty($column) || empty($value)) {
+        if (empty($operator) || empty($column)) {
             return null;
         }
 
