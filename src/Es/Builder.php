@@ -109,7 +109,7 @@ class Builder
         }
 
         //check boolean
-        if (!in_array($boolean, ['must', 'must_not', 'should', 'filter'])) {
+        if (!in_array($boolean, ['must', 'must_not', 'should', 'filter', 'bool'])) {
             throw new \Exception("boolen($boolean) is error!");
         }
 
@@ -130,11 +130,11 @@ class Builder
                 foreach ($wheres as $where) {
                     $whereQuery = $this->buildWhere($where);
                     if ($whereQuery) {
-                        if($boolean == 'filter') {
-                            if(isset($whereQuery['must']) || isset($whereQuery['must_not']) || isset($whereQuery['should']) || isset($whereQuery['filter'])) {
-                                $whereQuerys[$boolean]['bool'] = $whereQuery;
+                        if(isset($whereQuery['must']) || isset($whereQuery['must_not']) || isset($whereQuery['should']) || isset($whereQuery['filter'])) {
+                            if($boolean == 'bool') {
+                                $whereQuerys['bool'] = $whereQuery;
                             } else {
-                                $whereQuerys[$boolean][] = $whereQuery;
+                                $whereQuerys[$boolean]['bool'] = $whereQuery;
                             }
                         } else {
                             $whereQuerys[$boolean][] = $whereQuery;
@@ -394,6 +394,8 @@ class Builder
         } elseif (in_array($boolean, ['miss', 'missing'])) {
             $boolean  = 'must';
             $operator = 'miss';
+        } else {
+            $boolean = 'bool';
         }
 
         $acount = count($arguments);
