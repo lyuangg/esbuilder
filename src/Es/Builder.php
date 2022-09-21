@@ -400,7 +400,7 @@ class Builder
 
         $acount = count($arguments);
         if ($acount == 1) {
-            return $this->addWhere($boolean, $arguments[0]);
+            return $this->addWhere($boolean, $arguments[0], $operator);
         } elseif ($acount == 2) {
             return $this->addWhere($boolean, $arguments[0], $operator, $arguments[1]);
         } elseif ($acount == 3) {
